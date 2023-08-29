@@ -59,7 +59,10 @@ export default function Main(){
 
     return (
         <div>
-            <input onChange={handleSearch}/>
+            <h1 class="text-5xl text-center pt-16">Ad Cards</h1>
+            <div class="pt-2 flex justify-end mx-auto text-gray-600 pr-16 p-5">
+                <input onChange={handleSearch} class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" type="search" placeholder="Search Campaign"/>
+            </div>
             <select onChange={handleSort} value={sortBy}>
                 <option value='none'></option>
                 <option value='asc'>ascending</option>

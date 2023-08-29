@@ -65,7 +65,9 @@ export default function Main(){
                 <option value='asc'>ascending</option>
                 <option value='desc'>descending</option>
             </select>
-            {cardComponents}
+            <div class="grid grid-flow-row-dense grid-cols-3 justify-items-center">
+                {cardComponents}
+            </div>
         </div>
     )
 }

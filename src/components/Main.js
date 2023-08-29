@@ -18,8 +18,14 @@ export default function Main(){
     },[])
 
     const cardComponents = allAds.map((ad)=>{
+        const campaign = ad.campaign_name ?? ad.campaign ?? ad.utm_campaign
+        const adset = ad.media_buy_name ?? ad.ad_group ?? ad.ad_squad_name ?? ad.utm_medium 
+        const creative = ad.ad_name ?? ad.image_name ?? ad.creative_name ?? ad.utm_content
+        const spend = ad.spend ?? ad.cost
+        const clicks = ad.clicks ?? ad.post_clicks
+
         return(
-            <Card key={ad.id} {...ad}/>
+            <Card campaign={campaign} adset={adset} creative={creative} spend={spend} clicks={clicks} impressions={ad.impressions}/>
         )
     })
     

@@ -3,6 +3,7 @@ import Card from "./Card.js"
 
 export default function Main(){
     const [allAds, setAllAds] = useState([])
+    const [googleAnalytics, setGoogleAnalytics] = useState([])
     const [searchedCampaign, setSearchedCampaign] = useState('')
     const [sortBy, setSortBy] = useState('')
 
@@ -11,7 +12,8 @@ export default function Main(){
             .then(r => {
                 if(r.ok) {
                     r.json().then(data=>{
-                        setAllAds([...data.facebook_ads, ...data.twitter_ads, ...data.snapchat_ads, ...data.google_analytics])
+                        setAllAds([...data.facebook_ads, ...data.twitter_ads, ...data.snapchat_ads])
+                        setGoogleAnalytics([...data.google_analytics])
                     })
                 } else {
                     console.log(r.status)
@@ -19,7 +21,7 @@ export default function Main(){
             })
     },[])
 
-    //search by campaign name
+    //search by Campaign
     const handleSearch = e => setSearchedCampaign(e.target.value)
     const searchByCampaign = allAds.filter(ad => {
         const campaign = ad.campaign_name ?? ad.campaign ?? ad.utm_campaign
@@ -27,7 +29,7 @@ export default function Main(){
         return(campaign.toLowerCase().includes(searchedCampaign.toLowerCase()))
     })
 
-    console.log(searchByCampaign)
+    console.log(googleAnalytics)
     
     //sort cards by Spend
     const handleSort = e => setSortBy(e.target.value)
@@ -71,7 +73,7 @@ export default function Main(){
             <div class="pt-2 flex justify-end mx-auto text-gray pr-16 p-5">
                 <input onChange={handleSearch} class="bg-white shadow-lg ring-1 ring-black ring-opacity-5 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" type="search" placeholder="Search Campaign"/>
             </div>
-            <div class="grid grid-flow-row-dense grid-cols-3 justify-items-center">
+            <div class="flex flex-row flex-wrap justify-center">
                 {cardComponents}
             </div>
         </div>

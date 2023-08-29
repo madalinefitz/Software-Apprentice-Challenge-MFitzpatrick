@@ -58,16 +58,19 @@ export default function Main(){
     })
 
     return (
-        <div>
-            <h1 class="text-5xl text-center pt-16">Ad Cards</h1>
-            <div class="pt-2 flex justify-end mx-auto text-gray-600 pr-16 p-5">
-                <input onChange={handleSearch} class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" type="search" placeholder="Search Campaign"/>
+        <div class="p-10">
+            <div class="relative inline-block text-left absolute pl-10">
+                <div class="text-md">Sort By Spend:</div>
+                <select class="mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2" onChange={handleSort} value={sortBy}>
+                    <option class="text-gray-700 block px-4 py-2 text-sm" value='none'></option>
+                    <option class="text-gray-700 block px-4 py-2 text-sm" value='asc'>ascending</option>
+                    <option class="text-gray-700 block px-4 py-2 text-sm" value='desc'>descending</option>
+                </select>
             </div>
-            <select onChange={handleSort} value={sortBy}>
-                <option value='none'></option>
-                <option value='asc'>ascending</option>
-                <option value='desc'>descending</option>
-            </select>
+            <h1 class="text-5xl text-center pt-5">Ad Cards</h1>
+            <div class="pt-2 flex justify-end mx-auto text-gray pr-16 p-5">
+                <input onChange={handleSearch} class="bg-white shadow-lg ring-1 ring-black ring-opacity-5 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" type="search" placeholder="Search Campaign"/>
+            </div>
             <div class="grid grid-flow-row-dense grid-cols-3 justify-items-center">
                 {cardComponents}
             </div>

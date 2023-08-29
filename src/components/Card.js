@@ -2,8 +2,8 @@
 export default function Card({campaign, adset, creative, spend, clicks, impressions}) {
     return(
         <div>
-            <div class="max-w-sm w-full lg:max-w-full lg:flex p-5 grow-0">
-                <div class="box-border h-62 w-62 border-4 border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-6 flex flex-col justify-between leading-normal">
+            <div class="max-w-sm w-full lg:max-w-full lg:flex p-5 grow-0 shadow-lg ring-1 ring-black ring-opacity-5 m-5">
+                <div class="bg-white p-6 flex flex-col justify-between leading-normal">
                     <div class="mb-8">
                         <div class="text-gray-900 font-bold text-xl mb-2">Campaign: {campaign}</div>
                         <p class="text-gray-700 text-base">Adset: {adset}</p>

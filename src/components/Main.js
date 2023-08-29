@@ -69,7 +69,10 @@ export default function Main(){
                     <option class="text-gray-700 block px-4 py-2 text-sm" value='desc'>descending</option>
                 </select>
             </div>
-            <h1 class="text-5xl text-center pt-5">Ad Cards</h1>
+            <div class="flex justify-center">
+                <img src='https://blueprint.tech/wp-content/uploads/2023/02/Blueprint-Advertising-Machine-Logo.png'/>
+            </div>
+            <h1 class="text-4xl text-center pt-5">Ad Cards</h1>
             <div class="pt-2 flex justify-end mx-auto text-gray pr-16 p-5">
                 <input onChange={handleSearch} class="bg-white shadow-lg ring-1 ring-black ring-opacity-5 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none" type="search" placeholder="Search Campaign"/>
             </div>

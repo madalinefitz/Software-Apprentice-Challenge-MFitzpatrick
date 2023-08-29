@@ -4,6 +4,7 @@ import Card from "./Card.js"
 export default function Main(){
     const [allAds, setAllAds] = useState([])
     const [searchedCampaign, setSearchedCampaign] = useState('')
+    const [sortBy, setSortBy] = useState('')
 
     useEffect(()=>{
         fetch('http://localhost:3000/fakeDataSet')
@@ -26,8 +27,25 @@ export default function Main(){
         return(campaign.toLowerCase().includes(searchedCampaign.toLowerCase()))
     })
 
+    console.log(searchByCampaign)
+    
+    //sort cards by Spend
+    const handleSort = e => setSortBy(e.target.value)
+    const sortedBySpend = searchByCampaign.sort((adA, adB) => {
+        const spendA = adA.spend ?? adA.cost
+        const spendB = adB.spend ?? adB.cost
+        
+        if (sortBy === 'asc'){
+            return spendA - spendB
+        } else if (sortBy === 'desc'){
+            return spendB - spendA
+        } else {
+            return searchByCampaign
+        }
+    })
+
     //pass props to Card component
-    const cardComponents = searchByCampaign.map((ad)=>{
+    const cardComponents = sortedBySpend.map((ad)=>{
         const campaign = ad.campaign_name ?? ad.campaign ?? ad.utm_campaign
         const adset = ad.media_buy_name ?? ad.ad_group ?? ad.ad_squad_name ?? ad.utm_medium 
         const creative = ad.ad_name ?? ad.image_name ?? ad.creative_name ?? ad.utm_content
@@ -38,13 +56,15 @@ export default function Main(){
             <Card campaign={campaign} adset={adset} creative={creative} spend={spend} clicks={clicks} impressions={ad.impressions}/>
         )
     })
-    
-
 
     return (
         <div>
-            <h1>Main</h1>
             <input onChange={handleSearch}/>
+            <select onChange={handleSort} value={sortBy}>
+                <option value='none'></option>
+                <option value='asc'>ascending</option>
+                <option value='desc'>descending</option>
+            </select>
             {cardComponents}
         </div>
     )

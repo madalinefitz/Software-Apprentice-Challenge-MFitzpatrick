@@ -2,14 +2,14 @@ import {useState, useEffect} from 'react'
 import Card from "./Card.js"
 
 export default function Main(){
-    const [facebookAds, setFacebookAds] = useState([])
+    const [allAds, setAllAds] = useState([])
 
     useEffect(()=>{
         fetch('http://localhost:3000/fakeDataSet')
             .then(r => {
                 if(r.ok) {
                     r.json().then(data=>{
-                        setFacebookAds(data)
+                        setAllAds([...data.facebook_ads, ...data.twitter_ads, ...data.snapchat_ads, ...data.google_analytics])
                     })
                 } else {
                     console.log(r.status)
@@ -17,10 +17,17 @@ export default function Main(){
             })
     },[])
 
+    const cardComponents = allAds.map((ad)=>{
+        return(
+            <Card key={ad.id} {...ad}/>
+        )
+    })
+    
+
     return (
         <div>
             <h1>Main</h1>
-            <Card/>
+            {cardComponents}
         </div>
     )
 }

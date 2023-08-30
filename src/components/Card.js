@@ -1,5 +1,6 @@
 
-export default function Card({campaign, adset, creative, spend, clicks, impressions}) {
+export default function Card({campaign, adset, creative, spend, clicks, impressions, results}) {
+    
     return(
             <div class="max-w-md p-5 shadow-lg ring-1 ring-black ring-opacity-5 m-5">
                 <div class="flex lg:basis-1/3 bg-white p-6 flex flex-col justify-between">
@@ -13,7 +14,7 @@ export default function Card({campaign, adset, creative, spend, clicks, impressi
                             <p class="text-gray leading-none">Spend: {spend}</p>
                             <p class="text-gray">Impressions: {impressions}</p>
                             <p class="text-gray">Clicks: {clicks}</p>
-                            <p class="text-gray">Results:</p>
+                            <p class="text-gray">Results: {results}</p>
                         </div>
                     </div>
                 </div>

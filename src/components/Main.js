@@ -29,7 +29,6 @@ export default function Main(){
         return(campaign.toLowerCase().includes(searchedCampaign.toLowerCase()))
     })
 
-    console.log(googleAnalytics)
     
     //sort cards by Spend
     const handleSort = e => setSortBy(e.target.value)
@@ -46,18 +45,32 @@ export default function Main(){
         }
     })
 
+    // i want to take the google analytics array and look at each analytic and compare it to the entire array of ads
+    //any add that matches that analytic should be assigned a results array that contains the results assigned to that ad
+    //if no analytics match that ad, i will assign the results a none value
+    
+
     //pass props to Card component
-    const cardComponents = sortedBySpend.map((ad)=>{
-        const campaign = ad.campaign_name ?? ad.campaign ?? ad.utm_campaign
-        const adset = ad.media_buy_name ?? ad.ad_group ?? ad.ad_squad_name ?? ad.utm_medium 
-        const creative = ad.ad_name ?? ad.image_name ?? ad.creative_name ?? ad.utm_content
+    const cardComponents = sortedBySpend.map(ad => {
+        const campaign = ad.campaign_name ?? ad.campaign
+        const adset = ad.media_buy_name ?? ad.ad_group ?? ad.ad_squad_name 
+        const creative = ad.ad_name ?? ad.image_name ?? ad.creative_name 
         const spend = ad.spend ?? ad.cost
         const clicks = ad.clicks ?? ad.post_clicks
 
+        let results = 0
+
+        googleAnalytics.forEach(analytic => {
+            if (campaign === analytic.utm_campaign && adset === analytic.utm_medium && creative === analytic.utm_content) {
+                results = results + analytic.results
+            }
+        })
+
         return(
-            <Card campaign={campaign} adset={adset} creative={creative} spend={spend} clicks={clicks} impressions={ad.impressions}/>
+            <Card campaign={campaign} adset={adset} creative={creative} spend={spend} clicks={clicks} impressions={ad.impressions} results={results}/>
         )
     })
+    
 
     return (
         <div class="p-10">
@@ -70,7 +83,7 @@ export default function Main(){
                 </select>
             </div>
             <div class="flex justify-center">
-                <img src='https://blueprint.tech/wp-content/uploads/2023/02/Blueprint-Advertising-Machine-Logo.png'/>
+                <img src="https://blueprint.tech/wp-content/uploads/2023/02/Blueprint-Advertising-Machine-Logo.png" alt="blueprint logo"/>
             </div>
             <h1 class="text-4xl text-center pt-5">Ad Cards</h1>
             <div class="pt-2 flex justify-end mx-auto text-gray pr-16 p-5">

@@ -58,8 +58,8 @@ export default function Main(){
         const spend = ad.spend ?? ad.cost
         const clicks = ad.clicks ?? ad.post_clicks
 
+        //allocate analytic results to each ad if available
         let results = 0
-
         googleAnalytics.forEach(analytic => {
             if (campaign === analytic.utm_campaign && adset === analytic.utm_medium && creative === analytic.utm_content) {
                 results = results + analytic.results

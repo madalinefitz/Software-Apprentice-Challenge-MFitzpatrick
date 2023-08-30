@@ -11,7 +11,7 @@ export default function Card({campaign, adset, creative, spend, clicks, impressi
                     </div>
                     <div class="flex items-center">
                         <div class="text-sm">
-                            <p class="text-gray leading-none">Spend: {spend}</p>
+                            <p class="text-gray font-bold">Spend: {spend}</p>
                             <p class="text-gray">Impressions: {impressions}</p>
                             <p class="text-gray">Clicks: {clicks}</p>
                             <p class="text-gray">Results: {results}</p>

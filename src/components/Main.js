@@ -21,7 +21,7 @@ export default function Main(){
             })
     },[])
 
-    //search by Campaign
+    //search cards by Campaign
     const handleSearch = e => setSearchedCampaign(e.target.value)
     const searchByCampaign = allAds.filter(ad => {
         const campaign = ad.campaign_name ?? ad.campaign ?? ad.utm_campaign
@@ -44,10 +44,6 @@ export default function Main(){
             return searchByCampaign
         }
     })
-
-    // i want to take the google analytics array and look at each analytic and compare it to the entire array of ads
-    //any add that matches that analytic should be assigned a results array that contains the results assigned to that ad
-    //if no analytics match that ad, i will assign the results a none value
     
 
     //pass props to Card component

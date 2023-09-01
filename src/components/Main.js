@@ -24,7 +24,7 @@ export default function Main(){
     //search cards by Campaign
     const handleSearch = e => setSearchedCampaign(e.target.value)
     const searchByCampaign = allAds.filter(ad => {
-        const campaign = ad.campaign_name ?? ad.campaign ?? ad.utm_campaign
+        const campaign = ad.campaign_name ?? ad.campaign
 
         return(campaign.toLowerCase().includes(searchedCampaign.toLowerCase()))
     })
